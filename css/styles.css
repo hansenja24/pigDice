@@ -1,4 +1,4 @@
-h1, h3{
+h1, h3, h4{
   text-align: center;
 }
 h1{
@@ -13,7 +13,7 @@ h1{
   display:none;
 }
 
-#point, #result1, #result2{
+#point, #result1, #result2, #dice{
   background-color:#f3f3f3;
   text-align: center;
   border:1px solid black;
@@ -25,6 +25,7 @@ h1{
   display: block;
   margin: 0 auto;
   text-align: center;
+  margin-top: 50px;
 }
 
 button#button{

@@ -20,17 +20,28 @@ $(document).ready(function() {
   var index = 0;
   var result1 = 0;
   var result2 = 0;
+  var dice = 0;
   $("#point").text(0)
   $("#result1").text(0);
   $("#result2").text(0);
+  $("#dice").text(0);
+
+
+//roll the dice
 
   $("button#roll").click(function(){
     if(index === 0){
       result1 = element1(result1);
-      // console.log(result1);
+      if(result1 > 0) {
+        $("#dice").text(result1 - dice);
+      } else{
+        $("#dice").text("1");
+      }
+      dice = result1
       $("#point").text(result1)
       if(result1 === 0){
         index = 1;
+        dice = 0;
         $("#turn1").hide();
         $("#turn2").show();
       } else if((result1 + total1) >= 100) {
@@ -42,10 +53,16 @@ $(document).ready(function() {
     }
     else if(index === 1){
       result2 = element1(result2);
-      // console.log(result2);
+      if(result2 > 0) {
+        $("#dice").text(result2 - dice);
+      }else{
+        $("#dice").text("1");
+      }
+      dice = result2
       $("#point").text(result2)
       if(result2 === 0){
         index = 0;
+        dice = 0;
         $("#turn2").hide();
         $("#turn1").show();
       } else if((result2 + total2) >= 100) {
@@ -57,18 +74,24 @@ $(document).ready(function() {
     }
   });
 
+//pass button
+
   $("button#pass").click(function(){
     if (index === 1) {
       index = 0;
+      dice = 0;
       total2 += result2;
       $("#result2").text(total2);
+      $("#point").text(0)
       result2 = 0;
       $("#turn2").hide();
       $("#turn1").show();
     } else if (index === 0) {
       index = 1;
+      dice = 0;
       total1 += result1;
       $("#result1").text(total1);
+      $("#point").text(0)
       result1 = 0;
       $("#turn1").hide();
       $("#turn2").show();
@@ -88,12 +111,4 @@ $(document).ready(function() {
     $("#result2").text(0);
   })
 
-
-
-
 });
-
-//function myFunction() {
-//     var x = document.getElementById("demo")
-//     x.innerHTML = Math.floor((Math.random() * 100) + 1);
-// }
